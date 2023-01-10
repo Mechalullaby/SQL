@@ -86,13 +86,29 @@ UPDATE product
        purchase_price = purchase_price / 2
  WHERE product_type = '厨房用具';  
 
+-- 一种很新的set
+UPDATE employees_new
+SET first_name =
+(
+    SELECT last_name
+    FROM employees
+    WHERE job_id = 100
+),
+last_name =
+(
+    SELECT first_name
+    FROM employees
+    WHERE job_id = 100
+)
+WHERE job_id = 100;
+
 # 插入数据，INSERT INTO <表名> (列1, 列2, 列3, ……) VALUES (值1, 值2, 值3, ……); 
 -- 包含列清单
--- INSERT INTO productins (product_id, product_name, product_type, 
--- sale_price, purchase_price, regist_date) VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');
+INSERT INTO productins (product_id, product_name, product_type, 
+sale_price, purchase_price, regist_date) VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');
 -- 省略列清单，省略表名后VALUES子句的值会默认按照从左到右的顺序赋给每一列
--- INSERT INTO productins 
--- VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');  
+INSERT INTO productins 
+VALUES ('0005', '高压锅', '厨房用具', 6800, 5000, '2009-01-15');  
 # INSERT 语句中想给某一列赋予 NULL 值时，可以直接在 VALUES子句的值清单中写入 NULL
 
 # 使用INSERT … SELECT 语句从其他表复制数据
