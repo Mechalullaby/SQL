@@ -1,3 +1,5 @@
+-- 视图、子查询、函数
+
 -- 视图
 -- 作视图时会根据创建视图的SELECT语句生成一张虚拟表，然后在这张虚拟表上做SQL操作
 -- 通过定义视图可以将频繁使用的SELECT语句保存以提高效率
@@ -126,6 +128,13 @@ SELECT product_id,
        sale_price,
        (SELECT AVG(sale_price)
           FROM product) AS avg_price
+  FROM product;
+
+-- 这样的话只会选出一个数据
+SELECT product_id,
+       product_name,
+       sale_price,
+       AVG(sale_price) AS avg_price
   FROM product;
 
 -- 关联子查询
